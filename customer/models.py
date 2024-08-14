@@ -31,6 +31,11 @@ class Customer(BaseModel):
         initials = ''.join([word[0].upper() for word in words])
         return initials
 
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.full_name)

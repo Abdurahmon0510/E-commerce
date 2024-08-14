@@ -80,7 +80,7 @@ function openExportPopup() {
                           <div class="d-flex  align-items-center">
                     <div class="avatar avatar-xl me-2">
     {% if customer.image %}
-        <img class="rounded-circle" src="{{ customer.image.url }}" alt="">
+        <img class="rounded-circle" src="{{ customer.image_url }}" alt="">
     {% else %}
         <div class="avatar-name rounded-circle">
             <span>{{ customer.get_initials }}</span>

@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-
 import customer
 from customer.forms import CustomerModelForm
 from customer.models import Customer
 from django.http import HttpResponse
 import csv
 
+
+#-------------------------------->customer
 def customer_list(request):
     search = request.GET.get('search')
     filter_button_clicked = request.GET.get('filter')
@@ -25,9 +26,6 @@ def customer_details(request, customer_slug):
     customer = get_object_or_404(Customer, slug=customer_slug)
     context = {'customer': customer}
     return render(request, 'customer/customer-details.html', context)
-
-def shopping_cart(request):
-    return render(request, 'shop/shopping-cart.html')
 
 @login_required
 def new_customer(request):
@@ -70,7 +68,6 @@ def delete_customer(request, customer_slug):
     customer.delete()
     return redirect('customer_list')
 
-
 @login_required
 def edit_customer(request, customer_slug):
     customer = get_object_or_404(Customer, slug=customer_slug)
@@ -84,3 +81,13 @@ def edit_customer(request, customer_slug):
 
     return render(request, 'customer/edit_customer.html', {'customer': customer, 'form': form})
 
+
+
+#----------------------------------->shop
+def shopping_cart(request):
+    return render(request, 'shop/shopping-cart.html')
+
+def checkout(request):
+    if request.method == 'POST':
+        return render(request,'shop/checkout.html')
+    return render(request,'shop/checkout.html')

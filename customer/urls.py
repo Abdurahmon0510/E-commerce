@@ -11,6 +11,7 @@ urlpatterns = [
     path('shopping-cart/',shopping_cart,name='shopping_cart'),
     path('new_customer/',new_customer,name='new_customer'),
     path('export/', export_customers, name='export_customers'),
+    path('checkout/',views.checkout,name='checkout'),
 # login,register
     path('login_page/', auth.login_page, name='login_page'),
     path('register_page/', auth.register_page, name='register_page'),
