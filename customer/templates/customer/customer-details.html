@@ -1,5 +1,6 @@
 {% extends 'customer/base/base.html' %}
 {% block detail_content %}
+    {% load static %}
 
           <div class="card mb-3">
             <div class="card-header">
@@ -14,9 +15,11 @@
                 <div class="col-auto d-none d-sm-block">
     <h6 class="text-uppercase text-600">
         {% if customer.image %}
-            <img src="{{ customer.image.url }}" alt=""/>
+            <img class="rounded-circle" height="90" WIDTH="110" src="{{ customer.image.url }}" alt=""/>
         {% else %}
-            <img src="{{ customer.get_initials }}" alt=""/>
+           <div class="avatar-name rounded-circle">
+            <span>{{ customer.get_initials }}</span>
+        </div>
         {% endif %}
         <span class="fas fa-user ms-2"></span>
     </h6>
