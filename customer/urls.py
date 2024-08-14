@@ -20,4 +20,4 @@ urlpatterns = [
     path('edit/<slug:customer_slug>/', views.edit_customer, name='edit_customer'),
     path('delete/<slug:customer_slug>/', views.delete_customer, name='delete_customer'),
 
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
