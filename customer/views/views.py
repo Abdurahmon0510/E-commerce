@@ -12,6 +12,7 @@ import csv
 
 #-------------------------------->customer
 def customer_list(request):
+
     search = request.GET.get('search')
     filter_button_clicked = request.GET.get('filter')
     if filter_button_clicked:

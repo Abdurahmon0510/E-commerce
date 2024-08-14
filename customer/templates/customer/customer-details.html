@@ -15,7 +15,7 @@
                 <div class="col-auto d-none d-sm-block">
     <h6 class="text-uppercase text-600">
         {% if customer.image %}
-            <img class="rounded-circle" height="90" WIDTH="110" src="{{ customer.image.url }}" alt=""/>
+            <img class="rounded-circle" height="90" WIDTH="120" src="{{ customer.image.url }}" alt=""/>
         {% else %}
            <div class="avatar-name rounded-circle">
             <span>{{ customer.get_initials }}</span>
@@ -28,10 +28,13 @@
             </div>
             <div class="card-body border-top">
               <div class="d-flex"><span class="fas fa-user text-success me-2" data-fa-transform="down-5"></span>
+
                 <div class="flex-1">
+
                   <p class="mb-0">Customer was created</p>
                   <p class="fs--1 mb-0 text-600">{{ customer.created_at }}</p>
                 </div>
+
               </div>
             </div>
           </div>

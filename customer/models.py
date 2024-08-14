@@ -8,7 +8,11 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
+
+
 class Customer(BaseModel):
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -50,3 +54,6 @@ class Customer(BaseModel):
         verbose_name_plural = 'Customers'
         unique_together = (('first_name', 'last_name'),)
         ordering = ('first_name', 'last_name', 'phone')
+
+
+
