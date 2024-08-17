@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.models import User
 
-from customer.models import Customer
+from customer.models import User, Customer
+
 
 
 class CustomerModelForm(forms.ModelForm):
@@ -9,20 +9,21 @@ class CustomerModelForm(forms.ModelForm):
         model = Customer
         fields = ['first_name', 'last_name', 'email','phone','image','slug','address']
 class LoginFrom(forms.Form):
-    username = forms.CharField()
+    email = forms.EmailField()
     password = forms.CharField()
 class RegisterForm(forms.ModelForm):
     confirm_password = forms.CharField(max_length=255)
+    username = forms.CharField(max_length=255,required=False)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('email', 'email', 'password')
 
-    def clean_username(self):
-        username = self.data.get('username')
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(f'This {username} is already exists')
-        return username
+    def clean_email(self):
+        email = self.data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(f'This {email} is already exists')
+        return email
 
     def clean_password(self):
         password = self.data.get('password')
