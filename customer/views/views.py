@@ -1,9 +1,10 @@
 
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-import customer
+
 from customer.forms import CustomerModelForm
 from customer.models import Customer
 from django.http import HttpResponse
@@ -11,17 +12,37 @@ import csv
 
 
 #-------------------------------->customer
+
+
 def customer_list(request):
 
     search = request.GET.get('search')
     filter_button_clicked = request.GET.get('filter')
+
+    customers = Customer.objects.all()
+
     if filter_button_clicked:
-        customers = Customer.objects.all().order_by('-updated_at')
-    else:
-        customers = Customer.objects.all()
+        customers = customers.order_by('-updated_at')
+
     if search:
-        customers = customers.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search) | Q(email__icontains=search) | Q(phone__icontains=search) | Q(address__icontains=search))
-    return render(request, 'customer/customer-list.html', {'customers': customers})
+        customers = customers.filter(
+            Q(first_name__icontains=search) |
+            Q(last_name__icontains=search) |
+            Q(email__icontains=search) |
+            Q(phone__icontains=search) |
+            Q(address__icontains=search)
+        )
+
+
+    paginator = Paginator(customers, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'customer/customer-list.html', {
+        'customers': page_obj,
+        'filter_button_clicked': filter_button_clicked
+    })
+
 
 def customer_details(request, customer_slug):
     customer = get_object_or_404(Customer, slug=customer_slug)

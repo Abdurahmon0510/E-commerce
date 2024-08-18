@@ -3,7 +3,7 @@
 {% block main_content %}
 
 
-          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["name","email","phone","address","joined"],"page":10,"pagination":true}'>
+          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["name","email","phone","address","joined"]}'>
             <div class="card-header">
               <div class="row flex-between-center">
                 <div class="col-4 col-sm-auto d-flex align-items-center pe-0">
@@ -112,10 +112,24 @@ function openExportPopup() {
                 </table>
               </div>
             </div>
-            <div class="card-footer d-flex align-items-center justify-content-center">
-              <button class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-              <ul class="pagination mb-0"></ul>
-              <button class="btn btn-sm btn-falcon-default ms-1" type="button" title="Next" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
-            </div>
+           <div class="card-footer d-flex align-items-center justify-content-center">
+                <div class="pagination">
+                   <span class="step-links">
+                       {% if customers.has_previous %}
+                             <a href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if filter_button_clicked %}&filter={{ filter_button_clicked }}{% endif %}">&laquo; first</a>
+                             <a href="?page={{ customers.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if filter_button_clicked %}&filter={{ filter_button_clicked }}{% endif %}">previous</a>
+                        {% endif %}
+                       <span class="current">
+                                Page {{ customers.number }} of {{ customers.paginator.num_pages }}.
+                       </span>
+
+                        {% if customers.has_next %}
+                                  <a href="?page={{ customers.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if filter_button_clicked %}&filter={{ filter_button_clicked }}{% endif %}">next</a>
+                                  <a href="?page={{ customers.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if filter_button_clicked %}&filter={{ filter_button_clicked }}{% endif %}">last &raquo;</a>
+                        {% endif %}
+                   </span>
+               </div>
+           </div>
+
           </div>
 {% endblock %}

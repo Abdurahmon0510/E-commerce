@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customer.apps.CustomerConfig',
-    'colorfield',
+    'users.apps.UsersConfig',
+    'product.apps.ProductConfig',
     'django.contrib.sites',
 
 ]
+# settings.py
+SITE_ID = 1
+
 JAZZMIN_SETTINGS = {
     "site_title": "your_site_name",
     "site_header": "your_site_header",
@@ -124,8 +128,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,6 +140,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 

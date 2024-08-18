@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from customer.forms import LoginFrom, RegisterForm
-from customer.models import Customer
+
+
+from users.forms import LoginFrom, RegisterForm
 
 
 def login_page(request):
@@ -20,7 +21,7 @@ def login_page(request):
 
     else:
          form=LoginFrom()
-    return  render(request,'auth/login.html',{'form': form })
+    return  render(request, 'users/login.html', {'form': form})
 def register_page(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -36,7 +37,7 @@ def register_page(request):
         'form': form
     }
 
-    return render(request, 'auth/register.html', context)
+    return render(request, 'users/register.html', context)
 
 def logout_page(request):
     if request.method == 'POST':
