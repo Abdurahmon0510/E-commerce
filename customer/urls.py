@@ -2,18 +2,18 @@
 from django.urls import path
 
 from customer.views import  views
-from customer.views.views import customer_list, customer_details, shopping_cart, new_customer, export_customers
+
 
 urlpatterns = [
-    path('customer-list/',customer_list,name='customer_list'),
-    path('customer-details/<slug:customer_slug>',customer_details,name='customer_details'),
-    path('shopping-cart/',shopping_cart,name='shopping_cart'),
-    path('new_customer/',new_customer,name='new_customer'),
-    path('export/', export_customers, name='export_customers'),
-    path('checkout/',views.checkout,name='checkout'),
-    path('profile/',views.profile_page,name='profile_page'),
-    path('edit/<slug:customer_slug>/', views.edit_customer, name='edit_customer'),
-    path('delete/<slug:customer_slug>/', views.delete_customer, name='delete_customer'),
+    path('customer-list/',views.CustomerListView.as_view(),name='customer_list'),
+    path('customer-details/<slug:customer_slug>',views.CustomerDetailView.as_view(),name='customer_details'),
+    path('shopping-cart/',views.ShoppingCartView.as_view(),name='shopping_cart'),
+    path('new_customer/',views.CustomerCreateView.as_view(),name='new_customer'),
+    path('export/', views.CustomerExportView.as_view(), name='export_customers'),
+    path('checkout/',views.CheckoutView.as_view(),name='checkout'),
+    path('profile/',views.UserProfileView.as_view(),name='profile_page'),
+    path('edit/<slug:customer_slug>/', views.CustomerUpdateView.as_view(), name='edit_customer'),
+    path('delete/<slug:customer_slug>/', views.CustomerDeleteView.as_view(), name='delete_customer'),
 
 
 

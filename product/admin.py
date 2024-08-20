@@ -1,8 +1,15 @@
 from django.contrib import admin
 
 from product.models import Category, Product
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    fields = ['name', 'price', 'category', 'description', 'image']
+    list_display = ['name', 'price', 'category', 'description', 'image']
 
-# Register your models here.
+    exclude = ('slug',)
+
 admin.site.register(Category)
-admin.site.register(Product)
+
+
+
 
