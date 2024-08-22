@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import  login, logout
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
@@ -105,10 +105,8 @@ class RegisterPage(FormView):
          return super().form_valid(form)
 
 
-class LogoutPage(View):
-    def post(self, request, *args, **kwargs):
-        logout(request)
-        return redirect('customer_list')
+class LogoutPage(LogoutView):
+    next_page = reverse_lazy('customer_list')
 
 
 
