@@ -15,11 +15,16 @@ class ProductListView(View):
         context = {'products': page_obj}
         return render(request, 'product/product-list.html', context)
 
-class ProductDetailView(View):
-    def get(self, request, slug):
-        product = get_object_or_404(Product, slug=slug)
-        context = {'product': product}
-        return render(request, 'product/product-details.html', context)  # Mahsulot tafsilotlarini ko'rsatish
+# class ProductDetailView(View):
+#     def get(self, request, slug):
+#         product = get_object_or_404(Product, slug=slug)
+#         context = {'product': product}
+#         return render(request, 'product/product-details.html', context)
+class ProductDetailView(DetailView):
+    template_name = 'product/product-details.html'
+    model = Product
+    context_object_name = 'product'
+
 
 class ProductUpdateView(UpdateView):
     model = Product

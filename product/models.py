@@ -34,6 +34,7 @@ class Product(BaseModel):
     description = models.TextField()
     discount = models.FloatField(default=0, blank=True, null=True)
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
+    favourite = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:

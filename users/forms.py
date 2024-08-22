@@ -1,11 +1,18 @@
 from django import forms
+from django.contrib.auth.views import LoginView
 
+from users.custom_field import MultiEmailField
 from customer.models import User
 
 
 class LoginFrom(forms.Form):
     email = forms.EmailField()
     password = forms.CharField()
+
+class LoginPage(LoginView):
+    redirect_authenticated_user = True
+    form_class = LoginFrom
+
 class RegisterForm(forms.ModelForm):
     confirm_password = forms.CharField(max_length=255)
     username = forms.CharField(max_length=255,required=False)
@@ -38,3 +45,9 @@ class RegisterForm(forms.ModelForm):
             user.save()
 
         return user
+
+
+class SendingEmailForm(forms.Form):
+      subject = forms.CharField(max_length=255)
+      message = forms.CharField(widget=forms.Textarea)
+      recipient_list = MultiEmailField(widget=forms.Textarea)
