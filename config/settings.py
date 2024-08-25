@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import environ
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
-
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,12 +26,10 @@ environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -49,7 +47,8 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'django.contrib.sites',
     'widget_tweaks',
-
+    'social_django',
+    'import_export',
 ]
 # settings.py
 SITE_ID = 1
@@ -82,8 +81,7 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     # Whether to aut expand the menu
     "navigation_expanded": True,
-    # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
-    # for the full list of 5.13.0 free icon classes
+
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
@@ -112,7 +110,7 @@ JAZZMIN_SETTINGS = {
     # Change view #
     ###############
     "changeform_format": "horizontal_tabs",
-    # override change forms on a per modeladmin basis
+
     "changeform_format_overrides": {
         "auth.user": "collapsible",
         "auth.group": "vertical_tabs",
@@ -147,9 +145,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'config.wsgi.application'
-
 
 # Database
 # # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -163,14 +159,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME') ,
-        'PASSWORD': env('PASSWORD') ,
-        'HOST':  env('HOST'),
-        'PORT': env('PORT') ,
-        'USER':  env('USER')
+        'NAME': env('NAME'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
+        'USER': env('USER')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -190,7 +185,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -202,12 +196,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'customer/../media')
@@ -226,3 +219,18 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'a10130471@gmail.com'
 EMAIL_HOST_PASSWORD = 'cgzv ocsi tdgh mezm'
 EMAIL_DEFAULT_SENDER = EMAIL_HOST_USER
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1041334033399-8dvqg7scvcr5sbu0rohqs2cfidrsicgb.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_TWITTER_KEY = 'XVoniBTJ4wDCTGxN9QoOYk2F0'
+SOCIAL_AUTH_TWITTER_SECRET = '3ierYwJFcOGGACALnMIM1pMikkxxvUGhsvhjSR7nN6rTZjJ571'
+
+LOGIN_REDIRECT_URL = 'customer/customer-list'
+
