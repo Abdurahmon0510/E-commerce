@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import environ
+from import_export.formats.base_formats import CSV,XLSX
+
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -216,8 +218,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'a10130471@gmail.com'
-EMAIL_HOST_PASSWORD = 'cgzv ocsi tdgh mezm'
+EMAIL_HOST_USER = 'abdurahmonabduxalimovtuit@gmail.com'
+EMAIL_HOST_PASSWORD = 'lwcc rdtb zztd rqym'
 EMAIL_DEFAULT_SENDER = EMAIL_HOST_USER
 
 AUTHENTICATION_BACKENDS = [
