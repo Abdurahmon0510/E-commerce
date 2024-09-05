@@ -228,10 +228,10 @@ class ExportDataView(View):
         return response
 
     def export_json(self, date):
-        data = list(Customer.objects.all().values('id', 'first_name', 'last_name', 'phone', 'email'))
+        data = list(Customer.objects.all().values('id', 'first_name', 'last_name', 'phone', 'email','created_at'))
         response = HttpResponse(content_type='application/json')
         response['Content-Disposition'] = f'attachment; filename={Customer._meta.object_name}-{date}.json'
-        response.write(json.dumps(data, indent=4))
+        response.write(json.dumps(data, indent=4,default=str))
         return response
 
     def export_xlsx(self, date):

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import environ
-from import_export.formats.base_formats import CSV,XLSX
+# from import_export.formats.base_formats import CSV, XLSX
 
 
 env = environ.Env(
@@ -235,4 +235,5 @@ SOCIAL_AUTH_TWITTER_KEY = 'XVoniBTJ4wDCTGxN9QoOYk2F0'
 SOCIAL_AUTH_TWITTER_SECRET = '3ierYwJFcOGGACALnMIM1pMikkxxvUGhsvhjSR7nN6rTZjJ571'
 
 LOGIN_REDIRECT_URL = 'customer/customer-list'
+
 
