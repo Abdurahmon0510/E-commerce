@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'social_django',
     'import_export',
+    'app.apps.AppConfig',
 ]
 # settings.py
 SITE_ID = 1
