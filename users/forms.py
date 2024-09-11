@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from customer.models import User
+
 from users.custom_field import MultiEmailField
+from customer.models import User
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField()

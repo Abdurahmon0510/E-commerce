@@ -13,7 +13,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 from config import settings
 from config.settings import EMAIL_DEFAULT_SENDER
-from customer.models import User
+
 from users.forms import RegisterForm, SendingEmailForm
 from users.authentication_form import AuthenticationForm
 from users.tokens import AccountTokenGenerator

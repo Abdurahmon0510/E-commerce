@@ -149,7 +149,7 @@ class CustomerCreateView(LoginRequiredMixin, CreateView):
     model = Customer
     form_class = CustomerModelForm
     template_name = 'customer/new_customer.html'
-    success_url = '/customer-list/'
+    success_url = '/customer/customer-list/'
 
 class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     model = Customer
@@ -157,7 +157,7 @@ class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'customer/edit_customer.html'
     slug_field = 'slug'
     slug_url_kwarg = 'customer_slug'
-    success_url = '/customer-list/'
+    success_url = '/customer/customer-list/'
 
 class CustomerDeleteView(LoginRequiredMixin, DeleteView):
     model = Customer

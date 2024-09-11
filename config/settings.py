@@ -45,13 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customer.apps.CustomerConfig',
-    'users.apps.UsersConfig',
     'product.apps.ProductConfig',
     'django.contrib.sites',
     'widget_tweaks',
     'social_django',
     'import_export',
     'app.apps.AppConfig',
+    'users.apps.UsersConfig',
 ]
 # settings.py
 SITE_ID = 1

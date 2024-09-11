@@ -1,0 +1,20 @@
+[
+    {
+        "id": 3,
+        "name": "irer",
+        "price": 115.0,
+        "image": "",
+        "description": "wefwe",
+        "category": null,
+        "quantity": 0
+    },
+    {
+        "id": 4,
+        "name": "54efwe",
+        "price": 4455.0,
+        "image": "products/photo_2024-09-05_22-17-41.jpg",
+        "description": "dff",
+        "category": null,
+        "quantity": 0
+    }
+]

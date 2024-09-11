@@ -6,7 +6,8 @@ from django.utils.safestring import mark_safe
 from import_export.admin import ImportExportModelAdmin
 from import_export.formats import base_formats
 
-from customer.models import Customer,User
+from customer.models import Customer
+from customer.models import User
 
 
 # Register your models here.

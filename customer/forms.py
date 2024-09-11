@@ -1,6 +1,7 @@
 from django import forms
 
-from customer.models import User, Customer
+from customer.models import Customer
+
 
 
 
